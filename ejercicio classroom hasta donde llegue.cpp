@@ -118,6 +118,6 @@ struct Sensor sensor = find_sensor_by_id(sensores, num_sensores, id);
 int main() 
 {
     Sensor sensores[maximo];
-    
+    Sensor highest_sensor = get_highest_value(sensores, maximo);
     return 0;
 }
