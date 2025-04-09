@@ -10,7 +10,7 @@ struct Sensor
     int value;  
     };
 
-void  parse_sensor (Sensor *sensorvacio)
+void  parse_sensor (Sensor *sensorvacio) //firma de la funcion
 {
     printf("Ingrese ID del sensor %d:");
     scanf("%d",  &sensorvacio->id);
