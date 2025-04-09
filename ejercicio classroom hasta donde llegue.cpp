@@ -57,7 +57,7 @@ Sensor get_lowest_value(Sensor sensores[], int num_sensores)
     return lowest_sensor;
 }
 
-double get_average_value(Sensor sensores[], int num_sensores) 
+float  get_average_value(Sensor sensores[], int num_sensores) 
 {
     int sum = 0;
 
@@ -66,7 +66,7 @@ double get_average_value(Sensor sensores[], int num_sensores)
         sum += sensores[i].value;
     }
 
-    return (double)sum / num_sensores;  // Calcular el promedio
+    return (float)sum / num_sensores;  // Calcular el promedio
 }
 
 void get_range_value(Sensor sensores[], int num_sensores) 
