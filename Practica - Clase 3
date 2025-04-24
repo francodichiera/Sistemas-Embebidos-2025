@@ -1,32 +1,34 @@
-#include <iostream>
 #include <stdio.h>
+#include <string.h>
 
 #define size 5
 
 struct Persona
 {
-  int edad;
-  char nombre[20];
-  char sexo; //"F" o "M"
-  char estudios; //‘N’: no posee, ‘P’: primario, ‘S’: secundario, ‘T’: terciario, ‘U’: universitario
-  char indicador_estudios; // ‘I’: incompleto, ‘C’: completo
+    int edad;
+    char nombre[20];
+    char sexo; // "F" o "M"
+    char estudios; //‘N’: no posee, ‘P’: primario, ‘S’: secundario, ‘T’: terciario, ‘U’: universitario
+    char indicador_estudios; // ‘I’: incompleto, ‘C’: completo
 };
+
 struct Familia
 {   
     Persona integrantes[4];
-    int domicilio; // un numero o altura 
+    int domicilio; // un numero o altura
     char vivienda; // "C" casa , "D" depto
     char apellido[20];
-    
 };
 
 struct Familia familia[size];
 
+// Función para imprimir información de una persona
 void print_information(struct Persona p) 
 {
     printf("Nombre: %s, Edad: %d, Sexo: %c, Estudios: %c, Estado: %c\n", p.nombre, p.edad, p.sexo, p.estudios, p.indicador_estudios);
 }
 
+// Función para filtrar por estudios
 void filter_by_studies(struct Familia familia[], char estudio) 
 {
     for (int i = 0; i < size; i++)
@@ -41,6 +43,7 @@ void filter_by_studies(struct Familia familia[], char estudio)
     }
 }
 
+// Función para filtrar por edad mayor que un valor dado
 void filter_by_age_greater_than(struct Familia familia[], int edad_minima)
 {
     for (int i = 0; i < size; i++)
@@ -55,6 +58,7 @@ void filter_by_age_greater_than(struct Familia familia[], int edad_minima)
     }
 }
 
+// Función para filtrar por tipo de vivienda
 void filter_by_home_type(struct Familia familia[], char tipo_vivienda) 
 {
     for (int i = 0; i < size; i++) 
@@ -65,6 +69,8 @@ void filter_by_home_type(struct Familia familia[], char tipo_vivienda)
         }
     }
 }
+
+// Función para encontrar la familia con más universitarios graduados
 void find_family_with_most_university_graduates(struct Familia familia[]) 
 {
     int max_universitarios = 0;
@@ -93,6 +99,7 @@ void find_family_with_most_university_graduates(struct Familia familia[])
     }
 }
 
+// Función para calcular el porcentaje de analfabetismo
 void calcular_porcentaje_analfabetismo(struct Familia familia[])
 {
     int total_personas = 0;
@@ -119,59 +126,34 @@ void calcular_porcentaje_analfabetismo(struct Familia familia[])
     printf("Porcentaje de analfabetismo: %.2f%%\n", porcentaje);
 }
 
-
 int main() 
 {
-    Familia familia_perez = {.apellido = "perez"};
+    // Datos de las familias y personas
+    Familia familia_perez = {.apellido = "perez", .domicilio = 123, .vivienda = 'C'};
     
-    Persona juan = {.edad =45, .nombre= "juan"};
-    Persona franco = {.edad =17, .nombre= "juan"};
-    Persona ana = {.edad =42, .nombre= "juan"};
-    Persona maria = {.edad =15, .nombre= "juan"};
+    Persona juan = {.edad = 45, .nombre = "Juan", .sexo = 'M', .estudios = 'P', .indicador_estudios = 'C'};
+    Persona franco = {.edad = 17, .nombre = "Franco", .sexo = 'M', .estudios = 'N', .indicador_estudios = 'I'};
+    Persona ana = {.edad = 42, .nombre = "Ana", .sexo = 'F', .estudios = 'T', .indicador_estudios = 'C'};
+    Persona maria = {.edad = 15, .nombre = "Maria", .sexo = 'F', .estudios = 'P', .indicador_estudios = 'I'};
     
-    familia_perez.integrantes[0]= juan;
-    familia_perez.integrantes[1]= franco;
-    familia_perez.integrantes[2]= ana;
-    familia_perez.integrantes[3]= maria;
+    familia_perez.integrantes[0] = juan;
+    familia_perez.integrantes[1] = franco;
+    familia_perez.integrantes[2] = ana;
+    familia_perez.integrantes[3] = maria;
     
+    Familia familia_gomez = {.apellido = "gomez", .domicilio = 456, .vivienda = 'D'};
     
-    Familia familia_gomez = {.apellido = "gomez"};
-
-    Persona luis = {.edad = 50, .nombre = "luis"};
-    Persona carla = {.edad = 18, .nombre = "carla"};
-    Persona sofia = {.edad = 45, .nombre = "sofia"};
-    Persona tomas = {.edad = 12, .nombre = "tomas"};
+    Persona luis = {.edad = 50, .nombre = "Luis", .sexo = 'M', .estudios = 'U', .indicador_estudios = 'C'};
+    Persona carla = {.edad = 18, .nombre = "Carla", .sexo = 'F', .estudios = 'S', .indicador_estudios = 'C'};
+    Persona sofia = {.edad = 45, .nombre = "Sofia", .sexo = 'F', .estudios = 'P', .indicador_estudios = 'I'};
+    Persona tomas = {.edad = 12, .nombre = "Tomas", .sexo = 'M', .estudios = 'N', .indicador_estudios = 'I'};
 
     familia_gomez.integrantes[0] = luis;
     familia_gomez.integrantes[1] = carla;
     familia_gomez.integrantes[2] = sofia;
     familia_gomez.integrantes[3] = tomas;
 
-    Familia familia_fernandez = {.apellido = "fernandez"};
-
-    Persona roberto = {.edad = 38, .nombre = "roberto"};
-    Persona lucia = {.edad = 16, .nombre = "lucia"};
-    Persona juliana = {.edad = 35, .nombre = "juliana"};
-    Persona nico = {.edad = 10, .nombre = "nico"};
-
-    familia_fernandez.integrantes[0] = roberto;
-    familia_fernandez.integrantes[1] = lucia;
-    familia_fernandez.integrantes[2] = juliana;
-    familia_fernandez.integrantes[3] = nico;
-
-    Familia familia_mendez = {.apellido = "mendez"};
-
-    Persona ernesto = {.edad = 60, .nombre = "ernesto"};
-    Persona raul = {.edad = 30, .nombre = "raul"};
-    Persona claudia = {.edad = 55, .nombre = "claudia"};
-    Persona emilia = {.edad = 25, .nombre = "emilia"};
-
-    familia_mendez.integrantes[0] = ernesto;
-    familia_mendez.integrantes[1] = raul;
-    familia_mendez.integrantes[2] = claudia;
-    familia_mendez.integrantes[3] = emilia;
-    
-     // Llamar a las funciones implementadas
+    // Llamar a las funciones implementadas
     printf("\nFiltrar personas con estudios primarios completos:\n");
     filter_by_studies(familia, 'P');
 
@@ -180,7 +162,6 @@ int main()
     
     printf("\nEncontrar familia con más graduados universitarios:\n");
     find_family_with_most_university_graduates(familia);
-
     
     return 0;
 }
